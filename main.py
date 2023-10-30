@@ -1,4 +1,5 @@
 from src.textSummarizer.logging import logger
+from src.textSummarizer.pipeline.Stage_02_Data_Validation import DataValidationTrainingPipeline
 
 logger.info("Welcome to our custom logging")
 
@@ -7,7 +8,7 @@ from src.textSummarizer.pipeline.Stage_01_Data_Ingestion import DataIngestionTra
 # from textSummarizer.pipeline.stage_03_data_transformation import DataTransformationTrainingPipeline
 # from textSummarizer.pipeline.stage_04_model_trainer import ModelTrainerTrainingPipeline
 # from textSummarizer.pipeline.stage_05_model_evaluation import ModelEvaluationTrainingPipeline
-from textSummarizer.logging import logger
+from src.textSummarizer.logging import logger
 
 STAGE_NAME = "Data Ingestion stage"
 try:
@@ -17,5 +18,14 @@ try:
    logger.info(f">>>>>> stage {STAGE_NAME} completed <<<<<<\n\nx==========x")
 except Exception as e:
         logger.exception(e)
-        raise e
+#         raise e
 
+STAGE_NAME = "Data Validation stage"
+try:
+   logger.info(f">>>>>> stage {STAGE_NAME} started <<<<<<") 
+   data_validation = DataValidationTrainingPipeline()
+   data_validation.main()
+   logger.info(f">>>>>> stage {STAGE_NAME} completed <<<<<<\n\nx==========x")
+except Exception as e:
+        logger.exception(e)
+        raise e
